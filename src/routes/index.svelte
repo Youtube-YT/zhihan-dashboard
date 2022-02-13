@@ -115,6 +115,11 @@
     	period: 2,
     	style: "",
   	},
+	  {
+    	name: "BC",
+    	period: 1,
+    	style: "",
+  	},
 	],
 	Thursday: [
   	{
@@ -150,6 +155,11 @@
   	{
     	name: "M3",
     	period: 2,
+    	style: "",
+  	},
+	  {
+    	name: "BM",
+    	period: 1,
     	style: "",
   	},
 	],

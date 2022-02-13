@@ -84,14 +84,14 @@
     	style: "",
   	},
   	{
-    	name: "PJPK",
+    	name: "BI",
     	period: 1,
     	style: "",
   	},
 	],
 	Wednesday: [
   	{
-    	name: "BC",
+    	name: "BI",
     	period: 3,
     	style: "",
   	},
@@ -191,54 +191,63 @@
 </script>
 <h1>My Dashboard</h1>
 <h6>My School Timetable</h6>   
-<table class="table table-dark">
+<table class="table text-center table-bordered">
     <thead>
-      <tr>
+      <tr class="table-dark">
         <th scope="col">#</th>
         <th scope="col">1</th>
         <th scope="col">2</th>
         <th scope="col">3</th>
         <th scope="col">4</th>
+		<th scope="col">-</th>
         <th scope="col">5</th>
         <th scope="col">6</th>
         <th scope="col">7</th>
         <th scope="col">8</th>
         <th scope="col">9</th>
         <th scope="col">10</th>
-        <th scope="col">11</th>
-        <th scope="col">12</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <th scope="row">Monday</th>
         {#each timetable.Monday as timeSlot,index}
-        <td colspan="{timeSlot.period}" class="{timeSlot.style}"></td>
+        <td colspan={timeSlot.period} class={timeSlot.style}>
+		<button class="btn " type="button">{timeSlot.name}</button>
+		</td>
    		 {/each}
-        <td></td>
-        <td></td>
-        <td></td>
       </tr>
       <tr>
         <th scope="row">Tuesday</th>
-        <td></td>
-        <td></td>
-        <td></td>
+		{#each timetable.Tuesday as timeSlot,index}
+        <td colspan={timeSlot.period} class={timeSlot.style}>
+		<button class="btn " type="button">{timeSlot.name}</button>
+		</td>
+   		 {/each}
       </tr>
       <tr>
         <th scope="row">Wednesday</th>
-        <td colspan="2"></td>
-        <td></td>
+		{#each timetable.Wednesday as timeSlot,index}
+        <td colspan={timeSlot.period} class={timeSlot.style}>
+		<button class="btn " type="button">{timeSlot.name}</button>
+		</td>
+   		 {/each}
       </tr>
       <tr>
             <th scope="row">Thursday</th>
-        <td colspan="2"></td>
-        <td></td>
+			{#each timetable.Thursday as timeSlot,index}
+			<td colspan={timeSlot.period} class={timeSlot.style}>
+			<button class="btn " type="button">{timeSlot.name}</button>
+			</td>
+				{/each}
       </tr>
       <tr>
         <th scope="row">Friday</th>
-    <td colspan="2"></td>
-    <td></td>
+		{#each timetable.Friday as timeSlot,index}
+        <td colspan={timeSlot.period} class={timeSlot.style}>
+		<button class="btn " type="button">{timeSlot.name}</button>
+		</td>
+   		 {/each}
   </tr>
     </tbody>
   </table>

@@ -273,7 +273,15 @@ function 	showCurData(day, index, name, period, style){
         <th scope="row">Monday</th>
         {#each timetable.Monday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot">{timeSlot.name}</button>
+		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot" on:click={() =>
+			showCurData(
+			  "Monday",
+			  index,
+			  timeSlot.name,
+			  timeSlot.period,
+			  timeSlot.style
+			)}
+>{timeSlot.name}</button>
 		</td>
    		 {/each}
 			<td class="btn" 
@@ -283,7 +291,15 @@ function 	showCurData(day, index, name, period, style){
         <th scope="row">Tuesday</th>
 		{#each timetable.Tuesday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot">{timeSlot.name}</button>
+		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot" on:click={() =>
+			showCurData(
+			  "Tuesday",
+			  index,
+			  timeSlot.name,
+			  timeSlot.period,
+			  timeSlot.style
+			)}
+>{timeSlot.name}</button>
 		</td>
    		 {/each}
 			<td class="btn" 
@@ -293,7 +309,15 @@ function 	showCurData(day, index, name, period, style){
         <th scope="row">Wednesday</th>
 		{#each timetable.Wednesday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot">{timeSlot.name}</button>
+		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot" on:click={() =>
+			showCurData(
+			  "Wednesday",
+			  index,
+			  timeSlot.name,
+			  timeSlot.period,
+			  timeSlot.style
+			)}
+>{timeSlot.name}</button>
 		</td>
    		 {/each}
 			<td class="btn" 
@@ -303,7 +327,15 @@ function 	showCurData(day, index, name, period, style){
             <th scope="row">Thursday</th>
 			{#each timetable.Thursday as timeSlot,index}
 			<td colspan={timeSlot.period} class={timeSlot.style}>
-			<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot">{timeSlot.name}</button>
+			<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot" on:click={() =>
+            	showCurData(
+              	"Thursday",
+              	index,
+              	timeSlot.name,
+              	timeSlot.period,
+              	timeSlot.style
+            	)}
+>{timeSlot.name}</button>
 			</td>
 				{/each}
 				<td class="btn" 
@@ -313,7 +345,15 @@ function 	showCurData(day, index, name, period, style){
         <th scope="row">Friday</th>
 		{#each timetable.Friday as timeSlot,index}
         <td colspan={timeSlot.period} class={timeSlot.style}>
-		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot">{timeSlot.name}</button>
+		<button class="btn " type="button" data-bs-toggle="modal" data-bs-target="#editTimeSlot" on:click={() =>
+			showCurData(
+			  "Friday",
+			  index,
+			  timeSlot.name,
+			  timeSlot.period,
+			  timeSlot.style
+			)}
+>{timeSlot.name}</button>
 		</td>
    		 {/each}
 			<td class="btn" 
@@ -337,15 +377,15 @@ function 	showCurData(day, index, name, period, style){
 		<div class="modal-body">
 			<div class="input-group mb-3">
 				<span class="input-group-text" id="basic-addon1">Name</span>
-				<input type="text" class="form-control" placeholder="Acronym of subject" aria-label="Username" aria-describedby="basic-addon1">
+				<input type="text" class="form-control" placeholder="Acronym of subject" aria-label="Username" aria-describedby="basic-addon1" bind:value={curName}>
 			  </div>
 			  <div class="input-group mb-3">
 				<span class="input-group-text" id="basic-addon1">Period</span>
-				<input type="number" class="form-control" placeholder="Period no." aria-label="Username" aria-describedby="basic-addon1">
+				<input type="number" class="form-control" placeholder="Period no." aria-label="Username" aria-describedby="basic-addon1" bind:value={curPeriod}>
 			  </div>
 			  <div class="input-group mb-3">
 				<span class="input-group-text" id="basic-addon1">Style</span>
-				<select class="form-select" id="inputGroupSelect01">
+				<select class="form-select" id="inputGroupSelect01" bind:value={curStyle}>
 					<option selected value="">Default</option>
 					<option value="table-primary">Blue</option>
 					<option value="table-success">Green</option>

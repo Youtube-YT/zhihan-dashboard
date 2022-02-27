@@ -456,7 +456,12 @@ function functionName(curDay, curIndex) {
 		<div class="modal-footer">
 		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 		  <div>
-		  <button type="button" class="btn btn-danger" on:click={() => deleteTimeSlot("Monday")}>Delete</button>
+			<button
+			type="button"
+			class="btn btn-danger"
+			data-bs-dismiss="modal"
+			on:click={() => deleteTimeSlot(curDay, curIndex)}>Delete</button
+		  >  
 		  
 		  </div>
 		  <button type="button" class="btn btn-primary">Save changes</button>

@@ -1,4 +1,7 @@
 <script>
+import supabase from "$lib/db";
+
+
 
     async function signOut() {
    	 const { error } = await supabase.auth.signOut();
@@ -249,7 +252,7 @@ function 	showCurData(day, index, name, period, style){
 	curStyle=style;
 }
 
-function setTimeslot(day, index, name, period, style){
+function setTimeslot(day, index, newName, newPeriod, newStyle){
 	if (day === "Monday") {
   	timetable.Monday[index].name = newName;
   	timetable.Monday[index].period = newPeriod;
@@ -275,7 +278,7 @@ function setTimeslot(day, index, name, period, style){
   	timetable.Friday[index].period = newPeriod;
   	timetable.Friday[index].style = newStyle;
 	}
-
+	saveEntry();
 }
 
 function deleteTimeSlot(day, index){
@@ -299,13 +302,21 @@ function deleteTimeSlot(day, index){
   	timetable.Friday.splice(index, 1);
   	timetable = timetable;
 	}
-	
-
+	saveEntry();
 }
 
-function functionName(curDay, curIndex) {
-	return curDay * curIndex
+async function saveEntry() {
+  const { error } = await supabase.from("studentEntries").upsert(
+    {
+      user_id: supabase.auth.user().id,
+      timetable: timetable,
+    },
+    { onConflict: "user_id" }
+  );
+  if (error) alert(error.message);
 }
+
+
 </script>
 <h1>My Dashboard</h1>
 <h6>My School Timetable</h6>   
@@ -462,9 +473,8 @@ function functionName(curDay, curIndex) {
 			data-bs-dismiss="modal"
 			on:click={() => deleteTimeSlot(curDay, curIndex)}>Delete</button
 		  >  
-		  
 		  </div>
-		  <button type="button" class="btn btn-primary">Save changes</button>
+		  <button type="button" class="btn btn-primary" on:click={()=>{setTimeslot(curDay, curIndex, curName, curPeriod, curStyle)}}>Save changes</button>
 		</div>
 	  </div>
 	</div>
